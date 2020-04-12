@@ -2,7 +2,7 @@
 #this repository contains the full copyright notices and license terms.
 
 from xml.dom.minidom import parseString
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import socket
 import os
 import genshi
@@ -79,9 +79,9 @@ class API(object):
         Return XML object
         """
         headers={}
-        request = urllib2.Request(url, xml, headers)
+        request = urllib.request.Request(url, xml, headers)
         try:
-            response = urllib2.urlopen(request, timeout=self.timeout)
+            response = urllib.request.urlopen(request, timeout=self.timeout)
             return response.read()
         except socket.timeout as err:
             return
